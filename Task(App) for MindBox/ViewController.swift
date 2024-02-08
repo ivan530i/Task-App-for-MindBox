@@ -9,14 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var side1: UITextField!
-    @IBOutlet var side2: UITextField!
-    @IBOutlet var side3: UITextField!
-    @IBOutlet var result: UILabel!
-    @IBOutlet var resultOfCircle: UILabel!
-    @IBOutlet var radiusTextF: UITextField!
+    @IBOutlet private var side1: UITextField!
+    @IBOutlet private var side2: UITextField!
+    @IBOutlet private var side3: UITextField!
+    @IBOutlet private var result: UILabel!
+    @IBOutlet private var resultOfCircle: UILabel!
+    @IBOutlet private var radiusTextF: UITextField!
     
-    @IBAction func calculateResult(_ sender: UIButton) {
+    @IBAction private func calculateResult(_ sender: UIButton) {
         guard let sideOne = Double(side1.text ?? ""),
               let sideTwo = Double(side2.text ?? ""),
               let sideThree = Double(side3.text ?? "") else {
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         result.text = "Площадь треугольника = \(triangle.area())"
     }
     
-    @IBAction func calculateCircle(_ sender: UIButton) {
+    @IBAction private func calculateCircle(_ sender: UIButton) {
         guard let radiusText = radiusTextF.text, let radius = Double(radiusText) else {
             resultOfCircle.text = "Пожалуйста, введите число в поле радиуса"
             return
@@ -51,11 +51,11 @@ class ViewController: UIViewController {
 
 }
 
-protocol Shape {
+private protocol Shape {
     func area() -> Double
 }
 
-struct Triangle: Shape {
+private struct Triangle: Shape {
     var side1: Double
     var side2: Double
     var side3: Double
@@ -65,10 +65,10 @@ struct Triangle: Shape {
         return sqrt(s * (s - side1) * (s - side2) * (s - side3))
     }
 }
-struct Circle: Shape {
+private struct Circle: Shape {
     var radius: Double
     
-    func area() -> Double {
+     func area() -> Double {
         return Double.pi * radius * radius
     }
 }
